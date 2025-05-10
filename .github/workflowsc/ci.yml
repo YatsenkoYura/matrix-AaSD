@@ -1,0 +1,35 @@
+name: C++ Build & Test
+
+on:
+  push:
+    branches: [ main, "hw*" ]
+  pull_request:
+    branches: [ main, "hw*" ]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential libeigen3-dev libgtest-dev
+        cd /usr/src/gtest
+        sudo cmake .
+        sudo make
+        sudo cp *.a /usr/lib
+
+    - name: Chmod
+      run: chmod +x build.sh
+      run: chmod +x test.sh
+
+    - name: Build project
+      run: |
+        ./build.sh
+
+    - name: Run tests
+      run: |
+        ./test.sh
