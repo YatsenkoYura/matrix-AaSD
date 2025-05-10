@@ -23,8 +23,9 @@ jobs:
         sudo cp *.a /usr/lib
 
     - name: Chmod
-      run: chmod +x build.sh
-      run: chmod +x test.sh
+      run: |
+      chmod +x build.sh
+      chmod +x test.sh
 
     - name: Build project
       run: |
