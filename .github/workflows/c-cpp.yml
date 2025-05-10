@@ -24,8 +24,8 @@ jobs:
 
     - name: Chmod
       run: |
-      chmod +x build.sh
-      chmod +x test.sh
+        chmod +x build.sh
+        chmod +x test.sh
 
     - name: Build project
       run: |
